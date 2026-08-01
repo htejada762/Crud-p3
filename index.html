@@ -44,7 +44,15 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      tasks.push(input.value);
+      const val = input.value.trim();
+      
+      // Validación para evitar tareas vacías
+      if (!val) {
+        alert('¡El texto no puede estar vacío!');
+        return;
+      }
+
+      tasks.push(val);
       input.value = '';
       renderTasks();
     });
