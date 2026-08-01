@@ -7,7 +7,7 @@
     body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; }
     input, button { padding: 8px; margin: 5px 0; }
     ul { list-style: none; padding: 0; }
-    li { padding: 8px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; }
+    li { padding: 8px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
 <body>
@@ -28,9 +28,18 @@
 
     function renderTasks() {
       list.innerHTML = '';
-      tasks.forEach((task) => {
-        list.innerHTML += `<li>${task}</li>`;
+      tasks.forEach((task, index) => {
+        list.innerHTML += `
+          <li>
+            ${task}
+            <button onclick="deleteTask(${index})">Eliminar</button>
+          </li>`;
       });
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
     }
 
     form.addEventListener('submit', (e) => {
